@@ -7,11 +7,13 @@ namespace TradeProcessor
     {
         private readonly ITradeLoaderFactory _tradeLoaderFactory;
         private readonly IDataAdapter _dataAdapter;
+        private readonly ITradeReporter _tradeReporter;
 
-        public Client(ITradeLoaderFactory tradeLoaderFactory, IDataAdapter dataAdapter)
+        public Client(ITradeLoaderFactory tradeLoaderFactory, IDataAdapter dataAdapter, ITradeReporter tradeReporter)
         {
             _tradeLoaderFactory = tradeLoaderFactory.GuardNotNull(nameof(tradeLoaderFactory));
             _dataAdapter = dataAdapter.GuardNotNull(nameof(dataAdapter));
+            _tradeReporter = tradeReporter.GuardNotNull(nameof(tradeReporter));
         }
 
         public void Process(string transactionId)
@@ -28,7 +30,9 @@ namespace TradeProcessor
                     {
                         Console.WriteLine($"id: {iterator.Current.Id}, isin: {iterator.Current.Isin}, direction: {iterator.Current.Direction}, price: {iterator.Current.Price}, quantity: {iterator.Current.Quantity}");
 
-                        //tradeLoader.Current.Create(db);
+                        // iterator.Current.Create(_dataAdapter);
+
+                        _tradeReporter.AddTrade(iterator.Current);
                     }
                 }
 

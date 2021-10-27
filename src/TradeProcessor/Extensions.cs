@@ -47,5 +47,15 @@ namespace TradeProcessor
 
             return text;
         }
+
+        public static int GuardBiggerThan(this int number, int biggerThan, string name)
+        {
+            if (number <= biggerThan)
+            {
+                throw new ArgumentException($"Expecting number '{name}' to be bigger than '{biggerThan}'.");
+            }
+
+            return number;
+        }
     }
 }
