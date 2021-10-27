@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <Reference Include="CTSTestApplication">
-      <HintPath>..\lib\CTSTestApplication.dll</HintPath>
+      <HintPath>..\..\..\..\test-task-cts\lib\CTSTestApplication.dll</HintPath>
     </Reference>
   </ItemGroup>
 
